@@ -9,7 +9,7 @@ export default function App() {
   const [search, setSearch] = useState("");
 
   const fetchProducts = async () => {
-    const res = await API.get(`api/products?search=${search}`);
+    const res = await API.get(`/api/products?search=${search}`);
     setProducts(res.data);
   };
 
@@ -32,9 +32,9 @@ export default function App() {
     if (file) formData.append("image", file);
 
     if (my._id) {
-      await API.put(`api/products/${my._id}`, formData);
+      await API.put(`/api/products/${my._id}`, formData);
     } else {
-      await API.post("api/products", formData);
+      await API.post("/api/products", formData);
     }
 
     setMy({});
@@ -42,14 +42,13 @@ export default function App() {
     fetchProducts();
   };
 
-  const handleEdit = (p) => {
-    setMy(p);
-    setFile(null);
+  const deleteProduct = async (id) => {
+    await API.delete(`/api/products/${id}`);
+    fetchProducts();
   };
 
-  const deleteProduct = async (id) => {
-    await API.delete(`api/products/${id}`);
-    fetchProducts();
+  const handleEdit = (p) => {
+    setMy(p);
   };
 
   const handleLogout = () => {
@@ -58,94 +57,73 @@ export default function App() {
   };
 
   return (
+
     <div className="container">
+
       <div className="dashboard-box">
 
         <h1>🛒 Product Manager</h1>
 
-        <button className="btn-gray" onClick={handleLogout}>
-          Logout
-        </button>
+        {/* TOP BAR */}
+        <div className="top-bar">
+          <button className="btn-gray" onClick={handleLogout}>
+            Logout
+          </button>
 
-        {/* SEARCH */}
-        <input
-          className="search"
-          placeholder="Search by name or brand..."
-          onChange={(e) => setSearch(e.target.value)}
-        />
+          <input
+            className="search"
+            placeholder="Search products..."
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
 
         {/* FORM */}
         <form className="form" onSubmit={handleSubmit}>
-          <input name="name" placeholder="Name" onChange={handleChange} value={my.name || ""} />
+          <input name="name" placeholder="Product Name" onChange={handleChange} value={my.name || ""} />
           <input name="brand" placeholder="Brand" onChange={handleChange} value={my.brand || ""} />
           <input name="description" placeholder="Description" onChange={handleChange} value={my.description || ""} />
-          <input name="price" placeholder="Price" onChange={handleChange} value={my.price || ""} />
-
+          <input name="price" placeholder="Price ₹" onChange={handleChange} value={my.price || ""} />
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-
-          {my._id ? (
-            <div className="edit-actions">
-              <button type="submit" className="save">
-                Save Changes
-              </button>
-              <button
-                type="button"
-                className="cancel"
-                onClick={() => {
-                  setMy({});
-                  setFile(null);
-                }}
-              >
-                Cancel
-              </button>
-            </div>
-          ) : (
-            <button type="submit">Add Product</button>
-          )}
+          <button type="submit">
+            {my._id ? "Update Product" : "Add Product"}
+          </button>
         </form>
 
-        {/* TABLE */}
-        <div className="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th> {/* 👈 NEW */}
-                <th>Image</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
+        {/* PRODUCTS */}
+        <div className="products">
+          {products.map((p, index) => (
+            <div className="card" key={p._id}>
 
-            <tbody>
-              {products.map((p, index) => (
-                <tr key={p._id}>
-                  {/* 👇 COUNTING COLUMN */}
-                  <td>{index + 1}</td>
-                  <td>
-                    {p.image ? (
-                      <img src={`http://localhost:8000/uploads/${p.image}`} alt="" />
-                    ) : "No Image"}
-                  </td>
-                  <td>{p.name}</td>
-                  <td>{p.brand}</td>
-                  <td>{p.description}</td>
-                  <td>₹{p.price}</td>
-                  <td>
-                    <button onClick={() => handleEdit(p)}>Edit</button>
-                    <button className="delete" onClick={() => deleteProduct(p._id)}>
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              <div className="card-row">
+
+                <div className="card-img">
+                  {p.image ? (
+                    <img src={`https://jk-surgical-backend.onrender.com/uploads/${p.image}`} alt="" />
+                  ) : "No Image"}
+                </div>
+
+                <div className="card-content">
+                  <h3>{index + 1}. {p.name}</h3>
+                  <p className="brand">{p.brand}</p>
+                  <p className="price">₹{p.price}</p>
+                </div>
+
+              </div>
+
+              <p className="desc">{p.description}</p>
+
+              <div className="card-btns">
+                <button onClick={() => handleEdit(p)}>Edit</button>
+                <button className="delete" onClick={() => deleteProduct(p._id)}>Delete</button>
+              </div>
+
+            </div>
+          ))}
         </div>
 
       </div>
+
     </div>
+
   );
 }

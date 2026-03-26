@@ -5,6 +5,7 @@
   padding: 0;
 }
 
+/* BODY */
 body {
   font-family: "Segoe UI", sans-serif;
   background: #0f172a;
@@ -13,92 +14,101 @@ body {
 
 /* CONTAINER */
 .container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 40px auto;
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  width: 100%;
+  min-height: 100vh;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
 }
 
-/* HEADING */
+/* DASHBOARD */
+.dashboard-box {
+  width: 100%;
+  max-width: 1000px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* TITLE */
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-gray {
+  width: 100%;
+  background: #475569;
+  margin-bottom: 10px;
 }
 
 /* SEARCH */
 .search {
   width: 100%;
   padding: 10px;
+  margin-bottom: 15px;
   border-radius: 8px;
   border: none;
-  margin-bottom: 20px;
+  background: #020617;
+  color: white;
 }
 
-/* FORM */
+/* FORM (DESKTOP) */
 .form {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .form input {
-  padding: 8px;
+  padding: 10px;
   border-radius: 6px;
   border: none;
+  background: #020617;
+  color: white;
 }
 
 .form button {
   grid-column: span 5;
-  padding: 10px;
   background: #22c55e;
-  border: none;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
 /* TABLE */
+.table-wrapper {
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
-  background: #020617;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 th {
   background: #1e40af;
-  padding: 12px;
+  padding: 10px;
 }
 
 td {
-  padding: 12px;
-  border-bottom: 1px solid #334155;
+  padding: 10px;
   text-align: center;
+  border-bottom: 1px solid #334155;
 }
 
-tr:hover {
-  background: #1e293b;
-}
-
-/* IMAGE */
 img {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-/* BUTTONS */
-button {
-  padding: 8px 12px;
+  width: 50px;
+  height: 50px;
   border-radius: 6px;
-  border: none;
-  cursor: pointer;
+  object-fit: cover;
 }
 
 /* DELETE */
@@ -107,50 +117,188 @@ button {
   color: white;
 }
 
-/* EDIT ACTIONS */
-.edit-actions {
+/* MOBILE CARDS */
+.cards {
+  display: none;
+}
+
+.card {
+  background: #334155;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card-row {
   display: flex;
   gap: 10px;
 }
 
-.save {
+.card-img {
+  width: 70px;
+  height: 70px;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-btns {
+  margin-top: 8px;
+  display: flex;
+  gap: 5px;
+}
+
+.card-btns button {
+  flex: 1;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+  /* FORM SINGLE LINE */
+  .form {
+    display: block;
+  }
+
+  .form input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .form button {
+    width: 100%;
+  }
+
+  /* HIDE TABLE */
+  .desktop {
+    display: none;
+  }
+
+  /* SHOW CARDS */
+  .cards {
+    display: block;
+  }
+}
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.top-bar .search {
+  flex: 1;
+}
+
+/* FORM DESKTOP */
+.form {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form button {
+  grid-column: span 5;
   background: #22c55e;
-  color: white;
 }
 
-.cancel {
-  background: #64748b;
-  color: white;
+/* PRODUCTS */
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
-/* EDIT BANNER */
-.edit-banner {
-  background: #f59e0b;
-  color: black;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  text-align: center;
+/* CARD */
+.card {
+  background: #334155;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+/* CARD ROW */
+.card-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* IMAGE */
+.card-img {
+  width: 70px;
+  height: 70px;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* CONTENT */
+.card-content h3 {
+  margin-bottom: 4px;
+}
+
+.brand {
+  color: #94a3b8;
+}
+
+.price {
+  color: #22c55e;
   font-weight: bold;
 }
 
-/* ACTIVE ROW */
-.active-row {
-  background: #1d4ed8 !important;
+/* DESC */
+.desc {
+  margin-top: 8px;
+  font-size: 14px;
 }
 
-/* 📱 MOBILE RESPONSIVE */
+/* BUTTONS */
+.card-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-btns button {
+  flex: 1;
+}
+
+.delete {
+  background: #ef4444;
+  color: white;
+}
+
+/* 📱 MOBILE */
 @media (max-width: 768px) {
+
+  /* TOP BAR STACK */
+  .top-bar {
+    flex-direction: column;
+  }
+
+  /* FORM STACK */
   .form {
     grid-template-columns: 1fr;
   }
 
-  table {
-    display: block;
-    overflow-x: auto;
+  .form button {
+    grid-column: span 1;
   }
 
-  button {
-    width: 100%;
+  /* PRODUCTS SINGLE COLUMN */
+  .products {
+    grid-template-columns: 1fr;
   }
 }
