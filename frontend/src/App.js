@@ -26,20 +26,32 @@ export default function App() {
 
     const formData = new FormData();
     Object.keys(my).forEach((key) => {
-      if (key !== "_id") formData.append(key, my[key]);
+      if (key !== "_id") {
+        formData.append(key, my[key]);
+      }
     });
 
     if (file) formData.append("image", file);
 
-    if (my._id) {
-      await API.put(`/api/products/${my._id}`, formData);
-    } else {
-      await API.post("/api/products", formData);
-    }
+    try {
+      if (my._id) {
+        // ✅ UPDATE
+        await API.put(`/api/products/${my._id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      } else {
+        // ✅ CREATE
+        await API.post("/api/products", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      }
 
-    setMy({});
-    setFile(null);
-    fetchProducts();
+      setMy({});
+      setFile(null);
+      fetchProducts();
+    } catch (err) {
+      console.log("ERROR:", err);
+    }
   };
 
   const deleteProduct = async (id) => {
@@ -93,9 +105,26 @@ export default function App() {
 
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
 
-          <button type="submit">
-            {my._id ? "Update Product" : "Add Product"}
-          </button>
+          {/* ✅ EDIT MODE BUTTONS */}
+          {my._id ? (
+            <div className="edit-actions">
+              <button type="submit" className="save">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                className="cancel"
+                onClick={() => {
+                  setMy({});
+                  setFile(null);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <button type="submit">Add Product</button>
+          )}
 
         </form>
 
