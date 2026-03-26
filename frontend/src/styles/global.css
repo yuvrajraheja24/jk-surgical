@@ -706,3 +706,33 @@
   margin: 6px 0;
   font-size: 16px;
 }
+.call-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.call-btn:hover {
+  background: #1d4ed8;
+}
+.call-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.call-btn:hover {
+  background: #1e40af;
+}
