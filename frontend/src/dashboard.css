@@ -1,0 +1,177 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* BODY */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+/* MAIN CONTAINER */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* DASHBOARD CARD */
+.dashboard-box {
+  width: 100%;
+  max-width: 1000px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* TITLE */
+h1 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* SEARCH */
+.search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  background: #020617;
+  color: white;
+}
+
+/* FORM */
+.form {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #020617;
+  color: white;
+  width: 100%;
+}
+
+/* FILE INPUT FIX */
+input[type="file"] {
+  width: 100%;
+}
+
+/* BUTTON */
+button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ADD / SAVE BUTTON */
+.form button {
+  grid-column: span 5;
+  background: #22c55e;
+  color: white;
+}
+
+/* DELETE BUTTON */
+.delete {
+  background: #ef4444;
+  color: white;
+}
+
+/* EDIT ACTIONS */
+.edit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.save {
+  background: #22c55e;
+}
+
+.cancel {
+  background: #64748b;
+  color: white;
+}
+
+/* TABLE WRAPPER */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+/* HEADER */
+th {
+  background: #1e40af;
+  padding: 12px;
+}
+
+/* DATA */
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #334155;
+}
+
+/* ROW HOVER */
+tr:hover {
+  background: #1e293b;
+}
+
+/* IMAGE */
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* 📱 MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+  /* FORM STACK */
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  /* BUTTON FULL WIDTH */
+  button {
+    width: 100%;
+  }
+
+  /* EDIT BUTTONS STACK */
+  .edit-actions {
+    flex-direction: column;
+  }
+
+  /* SMALL TITLE */
+  h1 {
+    font-size: 20px;
+  }
+
+  /* CARD PADDING REDUCE */
+  .dashboard-box {
+    padding: 15px;
+  }
+}

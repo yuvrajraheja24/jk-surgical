@@ -1,0 +1,164 @@
+.welcome {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero {
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+  }
+  
+  /* buttons */
+  .btn-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /* BACKGROUND */
+.home {
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    color: white;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .navbar h2 {
+    font-weight: bold;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-buttons button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #1e293b;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .nav-buttons button:hover {
+    background: #3b82f6;
+  }
+  
+  .admin-btn {
+    background: #22c55e;
+  }
+  
+  /* HERO */
+  .hero {
+    text-align: center;
+    margin-top: 60px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+  }
+  
+  /* BUTTONS */
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .primary {
+    background: #22c55e;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+  }
+  
+  .secondary {
+    background: #334155;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+  }
+  
+  /* FEATURES */
+  .features {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    background: #334155;
+  }
+  
+  /* ANIMATION */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* 📱 MOBILE */
+  @media (max-width: 768px) {
+  
+    .navbar {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .hero h1 {
+      font-size: 26px;
+    }
+  
+    .hero-buttons {
+      flex-direction: column;
+    }
+  
+    .features {
+      grid-template-columns: 1fr;
+    }
+  }
