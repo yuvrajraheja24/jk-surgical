@@ -33,27 +33,23 @@ export default function Catalogue() {
   return (
     <div className="catalog-page">
       {/* HEADER */}
-      {/* HEADER */}
-<div className="catalog-header">
-  <button className="back-btn" onClick={() => navigate("/")}>
-    ← Back
-  </button>
+      <div className="catalog-header">
+        <button className="back-btn" onClick={() => navigate("/")}>
+          ← Back
+        </button>
 
-  <h1>🛒 Product Catalogue</h1>
+        <h1>🛒 Product Catalogue</h1>
 
-  {/* 🔍 SEARCH INSIDE HEADER */}
-  <div className="search-bar">
-    <input
-      type="text"
-      placeholder="🔍 Search products or brands..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-    />
-  </div>
-</div>
-
-      {/* 🔍 SEARCH BAR */}
-      
+        {/* 🔍 SEARCH INSIDE HEADER */}
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="🔍 Search products or brands..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
 
       {/* PRODUCTS */}
       {filteredProducts.length === 0 ? (
@@ -73,7 +69,11 @@ export default function Catalogue() {
             {/* DETAILS */}
             <div className="product-info">
               <h3>{p.name}</h3>
+
               <p className="brand">{p.brand}</p>
+
+              {/* 💰 PRICE ADD */}
+              <p className="price">₹{p.price}</p>
 
               <span className="badge">Available</span>
 

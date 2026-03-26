@@ -57,51 +57,69 @@ export default function App() {
   };
 
   return (
-
     <div className="container">
-
       <div className="dashboard-box">
 
-        <h1>🛒 Product Manager</h1>
-
-        {/* TOP BAR */}
         <div className="top-bar">
-          <button className="btn-gray" onClick={handleLogout}>
-            Logout
-          </button>
 
-          <input
-            className="search"
-            placeholder="Search products..."
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div className="title">
+            🛒 Product Manager
+          </div>
+
+          <div className="top-actions">
+            <input
+              className="search"
+              placeholder="🔍 Search products..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <button className="logout" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+
         </div>
 
-        {/* FORM */}
-        <form className="form" onSubmit={handleSubmit}>
+        {/* ✅ FORM (STACKED MOBILE STYLE) */}
+        <form className="form-mobile" onSubmit={handleSubmit}>
+
           <input name="name" placeholder="Product Name" onChange={handleChange} value={my.name || ""} />
+
           <input name="brand" placeholder="Brand" onChange={handleChange} value={my.brand || ""} />
+
           <input name="description" placeholder="Description" onChange={handleChange} value={my.description || ""} />
+
           <input name="price" placeholder="Price ₹" onChange={handleChange} value={my.price || ""} />
+
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+
           <button type="submit">
             {my._id ? "Update Product" : "Add Product"}
           </button>
+
         </form>
 
-        {/* PRODUCTS */}
+        {/* ✅ PRODUCTS (CARD UI) */}
         <div className="products">
+
           {products.map((p, index) => (
             <div className="card" key={p._id}>
 
               <div className="card-row">
 
+                {/* IMAGE */}
                 <div className="card-img">
                   {p.image ? (
-                    <img src={`https://jk-surgical-backend.onrender.com/uploads/${p.image}`} alt="" />
-                  ) : "No Image"}
+                    <img
+                      src={`https://jk-surgical-backend.onrender.com/uploads/${p.image}`}
+                      alt="product"
+                    />
+                  ) : (
+                    "No Image"
+                  )}
                 </div>
 
+                {/* DETAILS */}
                 <div className="card-content">
                   <h3>{index + 1}. {p.name}</h3>
                   <p className="brand">{p.brand}</p>
@@ -112,18 +130,20 @@ export default function App() {
 
               <p className="desc">{p.description}</p>
 
+              {/* BUTTONS */}
               <div className="card-btns">
                 <button onClick={() => handleEdit(p)}>Edit</button>
-                <button className="delete" onClick={() => deleteProduct(p._id)}>Delete</button>
+                <button className="delete" onClick={() => deleteProduct(p._id)}>
+                  Delete
+                </button>
               </div>
 
             </div>
           ))}
+
         </div>
 
       </div>
-
     </div>
-
   );
 }
