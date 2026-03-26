@@ -6,29 +6,34 @@ import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import errorHandler, { notFound } from "./middleware/errorMiddleware.js";
 
-// Load env
+// 🔐 Load env variables
 dotenv.config();
 
 const app = express();
 
-// Middleware
+// ✅ CORS (allow all)
 app.use(cors());
+
+// ✅ Body parser
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// ✅ Static folder (IMPORTANT for local uploads)
 app.use("/uploads", express.static("uploads"));
 
-// Routes
+// ✅ Routes
 app.use("/api/products", productRoutes);
 
-// Test route
+// ✅ Health check route
 app.get("/", (req, res) => {
   res.send("API is running 🚀");
 });
 
-// ❗ Error middleware (last)
+// ❗ 404 + Error middleware (ALWAYS LAST)
 app.use(notFound);
 app.use(errorHandler);
 
-// Server start (PRO way)
+// 🚀 Start server
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
@@ -36,10 +41,12 @@ const startServer = async () => {
     await connectDB();
 
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT} 🚀`);
+      console.log(`🚀 Server running on PORT ${PORT}`);
     });
+
   } catch (error) {
-    console.error("Server Error:", error.message);
+    console.error("❌ Server Error:", error.message);
+    process.exit(1);
   }
 };
 

@@ -25,13 +25,14 @@ export default function App() {
     e.preventDefault();
 
     const formData = new FormData();
-    Object.keys(my).forEach((key) => {
-      if (key !== "_id") {
-        formData.append(key, my[key]);
-      }
-    });
 
-    if (file) formData.append("image", file);
+    // Append each field explicitly, as in the prompt
+    formData.append("name", my.name);
+    formData.append("brand", my.brand);
+    formData.append("description", my.description);
+    formData.append("price", my.price);
+    // 🔥 MOST IMPORTANT
+    formData.append("image", file);
 
     try {
       if (my._id) {
@@ -140,7 +141,11 @@ export default function App() {
                 <div className="card-img">
                   {p.image ? (
                     <img
-                      src={`https://jk-surgical-backend.onrender.com/uploads/${p.image}`}
+                      src={
+                        p.image?.startsWith("http")
+                          ? p.image
+                          : `https://jk-surgical-backend.onrender.com/uploads/${p.image}`
+                      }
                       alt="product"
                     />
                   ) : (

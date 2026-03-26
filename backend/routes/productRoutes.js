@@ -1,29 +1,25 @@
 import express from "express";
-import multer from "multer";
+import upload from "../middleware/upload.js";
 
 import {
   createProduct,
   getProducts,
   updateProduct,
-  deleteProduct
+  deleteProduct,
 } from "../controllers/productController.js";
 
 const router = express.Router();
 
-// 📸 Multer setup
-const storage = multer.diskStorage({
-  destination: "uploads/",
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  }
-});
-
-const upload = multer({ storage });
-
-// Routes
+// ✅ CREATE PRODUCT (Cloudinary upload)
 router.post("/", upload.single("image"), createProduct);
+
+// ✅ GET ALL PRODUCTS
 router.get("/", getProducts);
+
+// ✅ UPDATE PRODUCT
 router.put("/:id", upload.single("image"), updateProduct);
+
+// ✅ DELETE PRODUCT
 router.delete("/:id", deleteProduct);
 
 export default router;
